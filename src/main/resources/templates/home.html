@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/base.html}">
+
+<div layout:fragment="header"><!-- 해당 파일을 위에 decorate에 선언한 html 동일한 프레그먼트에 끼겠다 -->
+    <div th:replace="~{ layout/header-frag::header('포스트 목록 페이지') }"></div><!-- 선언한 파일의 내용을 가져오겠다 -->
+</div>
+
+<div layout:fragment="content">
+    <!-- 같은이름의 프레그먼트에 자동으로 끼워짐 -->
+    <!-- 포스트 글 목록 - 테이블 -->
+    <div class="card my-2">
+        <div class="card-header">
+            <h5>포스트 목록</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover my-2">
+                <thead> <!-- table header -->
+                    <tr><!-- table row -->
+                        <th>번호</th> <!-- table cell header: 컬럼이름 -->
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성 시간</th>
+                    </tr>
+                </thead>
+                <tbody> <!-- table body -->
+                    <tr th:each="p : ${posts}"> <!-- for(Post p : posts){} 와 동일-->
+                        <td th:text="${p.id}"></td> <!-- table cell data: 컬럼데이터 -->
+                        <td>
+                            <a th:href="@{ /post/details/{id} (id=${p.id}) }"
+                                th:text="${p.title}"></a>
+                        </td>
+                        <td th:text="${p.author}"></td>
+                        <td th:text="${ #temporals.format(p.createdTime, 'yyyy-MM-dd HH:mm:ss') }"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <form method="get" th:action="@{ /post/search }">
+                <div class="row"> <!-- bootstrap은 한줄의 크기가 12칸이다 -->
+                    <div class="col-2">
+                        <select name="type" class="form-control">
+                            <option value="t">제목</option>
+                            <option value="c">내용</option>
+                            <option value="tc">제목+내용</option>
+                            <option value="a">작성자</option>
+                        </select>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" type="text" name="keyword" required autofocus />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" type="submit" value="검색" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
