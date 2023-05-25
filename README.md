@@ -3,3 +3,6 @@
 
 - Java ver : 11
 - BootStrap ver : 4.6
+- Jdk ver : 11.0.18
+- Spring ver : 2.7.9
+- DB : mySql
