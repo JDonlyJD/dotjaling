@@ -3213,6 +3213,9 @@ readers do not read off random characters that represent icons */
 .fa-random:before {
   content: "\f074"; }
 
+.fa-ranking-star:before {
+  content: "\e561"; }
+
 .fa-raspberry-pi:before {
   content: "\f7bb"; }
 
