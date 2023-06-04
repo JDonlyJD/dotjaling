@@ -11,14 +11,24 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/login.html")
+    @GetMapping("/login")
     public String login(){
-        return "login.html";
+        return "login";
     }
 
-    @GetMapping("/register.html")
+    @GetMapping("/register")
     public String register(){
-        return "register.html";
+        return "register";
+    }
+
+    @GetMapping("/view_main")
+    public String view_main(){
+        return "view_main";
+    }
+
+    @GetMapping("/view_detail")
+    public String view_detail(){
+        return "view_detail";
     }
 
 }
